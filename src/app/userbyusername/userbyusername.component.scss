@@ -1,0 +1,26 @@
+mat-card{
+    width:40%;
+    // height:20px;
+    margin: 2% 30% 2% 30%;
+  
+
+   
+    // vertical-align: middle;
+}
+mat-card-title{
+    display: inline-flex;
+    
+    font-size:14px;
+}
+a:link,a:visited{ 
+    text-decoration: none;
+    color:black; 
+}
+a:hover {
+     text-decoration: underline;
+    color:blue; 
+}
+mat-icon{
+    vertical-align:middle;
+    
+    }

@@ -1,0 +1,12 @@
+<mat-card>
+    <form class="example-form" #postTweet ="ngForm" (ngSubmit)="onSubmit(postTweet)">
+    <mat-form-field class="example-full-width"  appearance ="fill">
+    <span matPrefix> </span>
+    <input type="textarea" matInput placeholder="Enter something here" #postDesc name= "post" [(ngModel)]= "post" (ngModelChange)="hashtag($event)" [ngStyle]="{'width':'100%'}" maxlength="144">
+    
+    </mat-form-field>
+    <small class="form-text text-muted"><code>{{144- postDesc.value.length}} </code> Remaining characters</small>
+    <small class="error">{{errorMessage}}</small>
+    <mat-card-footer><button matSuffix mat-flat-button type="submit" color="primary">Post Tweet</button></mat-card-footer>
+    </form>
+    </mat-card>

@@ -1,0 +1,86 @@
+<!-- 
+<div class="container pt-3">
+    <div class="alert alert-danger text-center" >
+      <!-- <p>{{ error }}</p> -->
+    <!-- </div> --> 
+    
+    <mat-card class="main-container"
+    [ngStyle]="{'margin':'10px 10px 10px 10px'}" >
+    <!-- <mat-card-content>
+    tweet</mat-card-content> -->
+        
+      <mat-card class="register-container" [ngStyle]="{'width': '400px', 'height': '600px'}">
+       
+        
+          <mat-card-title>Register</mat-card-title>
+         
+    <mat-card-content>
+      <form [formGroup]="form" #formGroupDirective="ngForm" (ngSubmit)="submit(form,formGroupDirective)">
+        <p>
+            <mat-form-field appearance="fill" [ngStyle]="{'width':'150px'}">
+              <mat-label>First name</mat-label>
+              <input type="text" matInput placeholder="First name" formControlName="firstName" required>
+            </mat-form-field>
+          
+            <span [ngStyle]="{'margin':'auto 10px auto auto'}"></span>
+          
+            <mat-form-field appearance="fill" [ngStyle]="{'width':'150px'}">
+              <mat-label>Last name</mat-label>
+              <input type="text" matInput placeholder="Last name" formControlName="lastName" >
+            </mat-form-field>
+          </p>
+          <p> Gender <span [ngStyle]="{'margin':'auto 10px auto auto'}">* :</span>
+            <mat-radio-group *ngFor="let gender of genders" formControlName="gender" required >
+                <!-- <mat-label>Gender</mat-label> -->
+                <span [ngStyle]="{'margin':'auto 5px auto auto'}">
+                     <mat-radio-button value="gender">{{gender}}</mat-radio-button>
+                </span>
+              </mat-radio-group>
+          </p>
+          <p>
+          <mat-form-field appearance="fill" [ngStyle]="{'width':'150px'}">
+            <mat-label>Date of Birth</mat-label>
+        
+            <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          
+          </mat-form-field>
+          <span [ngStyle]="{'margin':'auto 10px auto auto'}"></span>
+            <mat-form-field appearance="fill" [ngStyle]="{'width':'150px'}">
+              <mat-label>Contact Number</mat-label>
+              <input type="tel" matInput placeholder="Contact Number" formControlName="contactNo" maxlength=10>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput placeholder="Email " formControlName="email" required/>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput placeholder="Password" formControlName="password"   required />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="fill">
+              <mat-label>Confirm Password</mat-label>
+              <input type="password" matInput placeholder="Confirm password" formControlName="confirmPassword"  required/>
+            </mat-form-field>
+          </p>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button  type="submit" [disabled]="!form.valid" mat-flat-button color="primary">Register</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+ 
+      </mat-card> 
+      </mat-card>

@@ -1,0 +1,31 @@
+<div fxLayout='row' fxLayoutWrap class="cards">
+    <div class="container" [ngStyle]="{'font-size':'20px'}">
+  <div >
+       <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle"/>
+         
+        </div>
+        <div>
+        <p>{{userDetails.firstName|titlecase}} {{userDetails.lastName|titlecase}}</p>
+        <p [ngStyle]="{'font-size':'14px','display':'inline-block'}">{{userDetails.email}}</p>
+        </div>
+
+    </div>
+    <br/>
+    <br/>
+    <!-- <h3 *ngIf="error" class="error">{{error}}</h3> -->
+    <div fxFlex="20" class="example-card" *ngFor="let tweet of userTweets">
+    <mat-card >
+        <mat-card-title>
+            <span><mat-icon>account_circle</mat-icon>
+           {{userDetails.firstName|titlecase}} {{userDetails.lastName|titlecase}}</span>
+           <span [ngStyle]="{'text-align':'end','margin-left':'70%'}">{{tweet.timeDiff}}
+        <button matButton (click)="editTweet(tweet.tweetId)" *ngIf="tweet.userEmail===logEmail" ><mat-icon class="edit">edit</mat-icon> </button>
+        <button matButton (click)="deleteTweet(tweet.tweetId)" *ngIf="tweet.userEmail===logEmail"><mat-icon class="delete">delete</mat-icon> </button></span>
+        </mat-card-title>
+        
+    <mat-card-content>{{tweet.tweetContent}}</mat-card-content>
+    <mat-card-footer id="like"><button matButton (click)="updateLikes(tweet.tweetId)" ><mat-icon>thumb_up</mat-icon>{{tweet.likes}} Likes </button>
+        <a [routerLink]="['/reply', tweet.tweetId]">{{tweet.reply.length}} Replies</a></mat-card-footer>
+</mat-card>
+</div>
+</div>

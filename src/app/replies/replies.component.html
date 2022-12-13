@@ -1,0 +1,46 @@
+<div fxLayout='row' fxLayoutWrap class="cards">
+    
+    <div fxFlex="20" class="example-card" >
+    <mat-card *ngIf="tweet!=null" class="card">
+        <mat-card-title>
+            <span><mat-icon>account_circle</mat-icon>
+           {{tweet.name|titlecase}}</span>
+           <span >{{tweetTime}}
+        <button matButton (click)="editTweet(tweet.tweetId)" *ngIf="tweet.userEmail===postReply.userEmail"><mat-icon class="edit">edit</mat-icon> </button>
+        <button matButton (click)="deleteTweet(tweet.tweetId)" *ngIf="tweet.userEmail===postReply.userEmail"><mat-icon class="delete">delete</mat-icon> </button></span>
+        </mat-card-title>
+        <br/>
+    <mat-card-content>{{tweet.tweetContent}}</mat-card-content>
+    <br/>
+    <mat-card-footer id="like">
+        <p class="like"><button matButton (click)="updateLikes(tweet.tweetId)" ><mat-icon>thumb_up</mat-icon>{{tweet.likes}} Likes</button> <span>{{tweet.reply.length}} Replies</span></p>
+    <hr />
+    <div><div fxFlex="20" class="example-card" *ngFor="let reply of tweet.reply">
+        <mat-card class="reply-card">
+            <mat-card-title>
+                <span><mat-icon>account_circle</mat-icon>
+           {{reply.name|titlecase}}</span>
+        <!-- <button matButton (click)="editTweet(tweet.tweetId)" ><mat-icon class="edit">edit</mat-icon> </button> -->
+        <span [ngStyle]="{'text-align':'end','margin-left':'70%'}">{{reply.timeDiff}}
+        <button matButton (click)="deleteReply(reply.replyId)" *ngIf="reply.userEmail===postReply.userEmail || tweet.userEmail=== postReply.userEmail"><mat-icon class="delete">delete</mat-icon> </button></span>
+        </mat-card-title>
+        
+    <mat-card-content>{{reply.replyContent}}</mat-card-content>
+    <!-- <mat-card-footer id="like"><button matButton (click)="updateLikes(tweet.tweetId)" ><mat-icon>thumb_up</mat-icon></button>{{tweet.likes}} Likes <a href="/">{{tweet.reply.length}} Replies</a></mat-card-footer> -->
+    </mat-card>
+    </div>
+</div>
+    <form class="example-form" #replyTweet ="ngForm" (ngSubmit)="onSubmit(replyTweet)">
+        <mat-form-field class="example-full-width"  appearance ="fill">
+        <span matPrefix> </span>
+        <input type="textarea" matInput placeholder="Reply here" #replyDesc name= "reply" [(ngModel)]= "reply" (ngModelChange)="hashtag($event)" [ngStyle]="{'width':'100%'}" maxlength="144">
+    
+        </mat-form-field>
+        <small class="form-text text-muted" [ngStyle]="{'margin-left':'10px'}"><code>{{144- replyDesc.value.length}} </code> Remaining characters</small>
+    <small class="error" >{{errorMessage}}</small>
+        <button matSuffix mat-flat-button type="submit" color="primary" [ngStyle]="{'margin-left':'90%'}">Reply</button>
+        </form>
+    </mat-card-footer>
+</mat-card>
+</div>
+</div>
